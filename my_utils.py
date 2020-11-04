@@ -106,7 +106,6 @@ def get_au_fa_fr(probs, labels, device, find_trsh=False):
 
         if find_trsh:
             F1 = 2 * (FA * FR) / (FA + FR)
-            print(F1, prob)
             if F1 > max_F1:
                 max_F1 = F1
                 best_trsh = prob
