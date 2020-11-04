@@ -35,7 +35,7 @@ def train_epoch(model, opt, loader, melspec, gru_nl, hidden_size, device):
         wandb.log({'loss':loss.item(), 'train_FA':FA, 'train_FR':FR, 'train_acc':acc})
 
 
-def validation(model, loader, melspec, gru_nl, hidden_size, device):
+def validation(model, loader, melspec, gru_nl, hidden_size, device, find_trsh=False):
     model.eval()
     with torch.no_grad():
         val_losses, accs, FAs, FRs = [], [], [], []
@@ -64,7 +64,7 @@ def validation(model, loader, melspec, gru_nl, hidden_size, device):
             FRs.append(FR)
 
         # area under FA/FR curve for whole loader
-        au_fa_fr = get_au_fa_fr(torch.cat(all_probs, dim=0), all_labels, device)
+        best_trsh, au_fa_fr = get_au_fa_fr(torch.cat(all_probs, dim=0), all_labels, device, find_trsh=True)
         wandb.log({'mean_val_loss':np.mean(val_losses), 'mean_val_acc':np.mean(accs),
                    'mean_val_FA':np.mean(FAs), 'mean_val_FR':np.mean(FRs),
-                   'au_fa_fr':au_fa_fr}) 
+                   'au_fa_fr':au_fa_fr})

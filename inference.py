@@ -113,5 +113,6 @@ if __name__ == '__main__':
     f = plt.figure()
     plt.xlabel('time mel frame')
     plt.ylabel('probability')
+    plt.hlines(y=0.3, xmin=0, xmax=get_mel_len(test_audio)/5 - 8, linestyles='--', colors='r')
     plt.plot(all_probs)
     f.savefig(sys.argv[1] + '.pdf')

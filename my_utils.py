@@ -91,7 +91,9 @@ def count_FA_FR(preds, labels):
     return FA.item()/torch.numel(preds), FR.item()/torch.numel(preds)
 
 
-def get_au_fa_fr(probs, labels):
+def get_au_fa_fr(probs, labels, device, find_trsh=False):
+    max_F1 = -1
+
     sorted_probs, indices = torch.sort(probs)
     sorted_probs = torch.cat((torch.Tensor([0]), sorted_probs))
     sorted_probs = torch.cat((sorted_probs, torch.Tensor([1])))
@@ -101,10 +103,20 @@ def get_au_fa_fr(probs, labels):
     for prob in sorted_probs:
         ones = (probs >= prob) * 1
         FA, FR = count_FA_FR(ones, labels)
+
+        if find_trsh:
+            F1 = 2 * (FA * FR) / (FA + FR)
+            print(F1, prob)
+            if F1 > max_F1:
+                max_F1 = F1
+                best_trsh = prob
+
         FAs.append(FA)
         FRs.append(FR)
     # plt.plot(FAs, FRs)
     # plt.show()
+    if find_trsh:
+        return best_trsh, -np.trapz(FRs, x=FAs)
     return -np.trapz(FRs, x=FAs)
 
 
