@@ -27,18 +27,19 @@ if __name__ == '__main__':
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    test_audio = torchaudio.load(sys.argv[1])[0].squeeze()
+    test_audio, sr = torchaudio.load(sys.argv[1])
+    test_audio = test_audio.squeeze()
 
     # Create models
     CRNN_model = CRNN(IN_SIZE, HIDDEN_SIZE, KERNEL_SIZE, STRIDE, GRU_NUM_LAYERS)
     attn_layer = AttnMech(HIDDEN_SIZE * NUM_DIRS)
     apply_attn = ApplyAttn(HIDDEN_SIZE * 2, NUM_CLASSES)
     # Load models
-    checkpoint = torch.load('crnn_red', map_location=device)
+    checkpoint = torch.load('crnn_final', map_location=device)
     CRNN_model.load_state_dict(checkpoint['model_state_dict'])
-    checkpoint = torch.load('attn_red', map_location=device)
+    checkpoint = torch.load('attn_final', map_location=device)
     attn_layer.load_state_dict(checkpoint['model_state_dict'])
-    checkpoint = torch.load('last_layer_red', map_location=device)
+    checkpoint = torch.load('apply_attn_final', map_location=device)
     apply_attn.load_state_dict(checkpoint['model_state_dict'])
 
     # Create melspec
