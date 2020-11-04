@@ -64,7 +64,7 @@ def validation(model, loader, melspec, gru_nl, hidden_size, device):
             FRs.append(FR)
 
         # area under FA/FR curve for whole loader
-        au_fa_fr = get_au_fa_fr(torch.cat(all_probs, dim=0), all_labels)
+        au_fa_fr = get_au_fa_fr(torch.cat(all_probs, dim=0), all_labels, device)
         wandb.log({'mean_val_loss':np.mean(val_losses), 'mean_val_acc':np.mean(accs),
                    'mean_val_FA':np.mean(FAs), 'mean_val_FR':np.mean(FRs),
                    'au_fa_fr':au_fa_fr}) 

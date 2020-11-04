@@ -17,7 +17,7 @@ if __name__ == '__main__':
     N_MELS     = 40
 
     IN_SIZE = 40
-    HIDDEN_SIZE = 128
+    HIDDEN_SIZE = 64
     KERNEL_SIZE = (20, 5)
     STRIDE = (8, 2)
     GRU_NUM_LAYERS = 2
