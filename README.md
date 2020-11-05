@@ -4,7 +4,7 @@ Config:
 Model described in Shan et al., 2018 (Attention-based End-to-End Models for Small-Footprint Keyword Spotting; https://arxiv.org/abs/1803.10916)
 
 Model is ~144k parameters, but can be changed with parameters. 
-Config in main:
+Config in main.py:
     
     BATCH_SIZE = 256        (size of batch for learning)
     NUM_EPOCHS = 35         (number of epochs to train model)
