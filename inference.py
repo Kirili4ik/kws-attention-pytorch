@@ -35,11 +35,11 @@ if __name__ == '__main__':
     attn_layer = AttnMech(HIDDEN_SIZE * NUM_DIRS)
     apply_attn = ApplyAttn(HIDDEN_SIZE * 2, NUM_CLASSES)
     # Load models
-    checkpoint = torch.load('crnn_final', map_location=device)
+    checkpoint = torch.load('models/crnn_final', map_location=device)
     CRNN_model.load_state_dict(checkpoint['model_state_dict'])
-    checkpoint = torch.load('attn_final', map_location=device)
+    checkpoint = torch.load('models/attn_final', map_location=device)
     attn_layer.load_state_dict(checkpoint['model_state_dict'])
-    checkpoint = torch.load('apply_attn_final', map_location=device)
+    checkpoint = torch.load('models/apply_attn_final', map_location=device)
     apply_attn.load_state_dict(checkpoint['model_state_dict'])
 
     # Create melspec

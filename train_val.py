@@ -1,6 +1,6 @@
 import torch
 import torch.nn.functional as F
-import wandb
+#import wandb
 import numpy as np
 from tqdm import tqdm
 
@@ -32,7 +32,7 @@ def train_epoch(model, opt, loader, melspec, gru_nl, hidden_size, device):
                             torch.sum(argmax_probs == labels),
                             torch.numel(argmax_probs)
         )
-        wandb.log({'loss':loss.item(), 'train_FA':FA, 'train_FR':FR, 'train_acc':acc})
+        #wandb.log({'loss':loss.item(), 'train_FA':FA, 'train_FR':FR, 'train_acc':acc})
 
 
 def validation(model, loader, melspec, gru_nl, hidden_size, device, find_trsh=False):
@@ -65,6 +65,6 @@ def validation(model, loader, melspec, gru_nl, hidden_size, device, find_trsh=Fa
 
         # area under FA/FR curve for whole loader
         best_trsh, au_fa_fr = get_au_fa_fr(torch.cat(all_probs, dim=0), all_labels, device, find_trsh=True)
-        wandb.log({'mean_val_loss':np.mean(val_losses), 'mean_val_acc':np.mean(accs),
-                   'mean_val_FA':np.mean(FAs), 'mean_val_FR':np.mean(FRs),
-                   'au_fa_fr':au_fa_fr})
+        #wandb.log({'mean_val_loss':np.mean(val_losses), 'mean_val_acc':np.mean(accs),
+        #           'mean_val_FA':np.mean(FAs), 'mean_val_FR':np.mean(FRs),
+        #           'au_fa_fr':au_fa_fr})

@@ -3,7 +3,7 @@
 Config:
 Model described in Shan et al., 2018 (Attention-based End-to-End Models for Small-Footprint Keyword Spotting; https://arxiv.org/abs/1803.10916)
 
-Model is ~144k parameters, but can be changed with parameters. 
+Model is ~142k parameters, but can be changed with parameters. 
 Config in main.py:
     
     BATCH_SIZE = 256        (size of batch for learning)
@@ -20,6 +20,7 @@ Config in main.py:
 
 Data for training can be downloaded here:
 http://download.tensorflow.org/data/speech_commands_v0.01.tar.gz
+(there is more info on downloading in the notebook)
 
 For learning run "python main.py".
 
