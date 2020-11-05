@@ -1,4 +1,4 @@
-# Key word spotting task (KWS attention)
+# Keyword spotting task with attention (KWS attention)
 
 Config:
 Model described in Shan et al., 2018 (Attention-based End-to-End Models for Small-Footprint Keyword Spotting; https://arxiv.org/abs/1803.10916)
