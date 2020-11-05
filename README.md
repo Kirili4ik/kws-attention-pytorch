@@ -24,5 +24,5 @@ http://download.tensorflow.org/data/speech_commands_v0.01.tar.gz
 
 For learning run "python main.py".
 
-Code supports inferense as described in paper. Install requirements and use "python inference.py YOUR_AUDIO". It works even on cpu fast and easy. 
-Script generates "YOUR_AUDIO.pdf" with graph of probabilities of word "Sheila" being said on audio.  
+Code supports inferense as described in paper. Install requirements and use "python inference.py path/to/YOUR_AUDIO". It works even on cpu fast and easy. 
+Script generates "path/to/YOUR_AUDIO.pdf" with graph of probabilities of word "Sheila" being said on audio.  
