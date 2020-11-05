@@ -13,7 +13,7 @@ from train_val import train_epoch, validation
 
 if __name__ == '__main__':
     BATCH_SIZE = 256
-    NUM_EPOCHS = 1
+    NUM_EPOCHS = 35
     N_MELS     = 40
 
     IN_SIZE = 40
